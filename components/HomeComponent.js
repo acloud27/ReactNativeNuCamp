@@ -7,14 +7,12 @@ import { PARTNERS } from '../shared/partners';
 
 function RenderItem({item}) {
     if (item) {
-        return(
+        return (
             <Card
                 featuredTitle={item.name}
                 image={require('./images/react-lake.jpg')}
             >
-                <Text
-                    style={{margin: 10}}
-                >
+                <Text style={{margin: 10}}>
                     {item.description}
                 </Text>
             </Card>
@@ -24,6 +22,7 @@ function RenderItem({item}) {
 }
 
 class Home extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -38,15 +37,15 @@ class Home extends Component {
     }
 
     render() {
-        return(
+        return (
             <ScrollView>
-                <RenderItem
+                <RenderItem 
                     item={this.state.campsites.filter(campsite => campsite.featured)[0]}
                 />
-                <RenderItem
-                    item={this.state.promotions.filter(promotion => promotion.feature)[0]}
+                <RenderItem 
+                    item={this.state.promotions.filter(promotion => promotion.featured)[0]}
                 />
-                <RenderItem
+                <RenderItem 
                     item={this.state.partners.filter(partner => partner.featured)[0]}
                 />
             </ScrollView>

@@ -4,6 +4,7 @@ import { Card } from 'react-native-elements';
 import { CAMPSITES } from '../shared/campsites';
 
 function RenderCampsite({campsite}) {
+
     if (campsite) {
         return (
             <Card
@@ -20,6 +21,7 @@ function RenderCampsite({campsite}) {
 }
 
 class CampsiteInfo extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +32,7 @@ class CampsiteInfo extends Component {
     static navigationOptions = {
         title: 'Campsite Information'
     }
-    
+
     render() {
         const campsiteId = this.props.navigation.getParam('campsiteId');
         const campsite = this.state.campsites.filter(campsite => campsite.id === campsiteId)[0];

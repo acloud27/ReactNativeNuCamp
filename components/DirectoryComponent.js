@@ -4,7 +4,8 @@ import { ListItem } from 'react-native-elements';
 import { CAMPSITES } from '../shared/campsites';
 
 class Directory extends Component {
-    constructor(props){
+
+    constructor(props) {
         super(props);
         this.state = {
             campsites: CAMPSITES
@@ -22,7 +23,7 @@ class Directory extends Component {
                 <ListItem
                     title={item.name}
                     subtitle={item.description}
-                    onPress={() => props.onPress(item.id)}
+                    onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
                     leftAvatar={{ source: require('./images/react-lake.jpg')}}
                 />
             );
