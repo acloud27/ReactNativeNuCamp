@@ -1,6 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { baseUrl } from '../shared/baseUrl'
-import { campsites } from './campsites';
+import { baseUrl } from '../shared/baseUrl';
 
 export const fetchComments = () => dispatch => {
     return fetch(baseUrl + 'comments')
@@ -20,7 +19,7 @@ export const fetchComments = () => dispatch => {
         .then(response => response.json())
         .then(comments => dispatch(addComments(comments)))
         .catch(error => dispatch(commentsFailed(error.message)));
-}
+};
 
 export const commentsFailed = errMess => ({
     type: ActionTypes.COMMENTS_FAILED,
@@ -49,7 +48,7 @@ export const fetchCampsites = () => dispatch => {
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
-        })
+            })
         .then(response => response.json())
         .then(campsites => dispatch(addCampsites(campsites)))
         .catch(error => dispatch(campsitesFailed(error.message)));
@@ -59,12 +58,12 @@ export const campsitesLoading = () => ({
     type: ActionTypes.CAMPSITES_LOADING
 });
 
-export const campsitesFailed = () => ({
+export const campsitesFailed = errMess => ({
     type: ActionTypes.CAMPSITES_FAILED,
     payload: errMess
 });
 
-export const addCampsites = () => ({
+export const addCampsites = campsites => ({
     type: ActionTypes.ADD_CAMPSITES,
     payload: campsites
 });
@@ -143,7 +142,7 @@ export const addPartners = partners => ({
     payload: partners
 });
 
-export const postFavorite =  campsiteId => dispatch => {
+export const postFavorite = campsiteId => dispatch => {
     setTimeout(() => {
         dispatch(addFavorite(campsiteId));
     }, 2000);
@@ -152,4 +151,23 @@ export const postFavorite =  campsiteId => dispatch => {
 export const addFavorite = campsiteId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
+});
+
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
+    const newComment = {
+        campsiteId,
+        rating,
+        author,
+        text
+    };
+    newComment.date = new Date().toISOString;
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+};
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
 });
