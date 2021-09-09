@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, Modal, Button, StyleSheet } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
-import { CAMPSITES } from '../shared/campsites';
-import { COMMENTS } from '../shared/comments';
+//import { CAMPSITES } from '../shared/campsites';
+//import { COMMENTS } from '../shared/comments';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
