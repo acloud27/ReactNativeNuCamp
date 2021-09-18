@@ -56,6 +56,9 @@ function RenderCampsite(props) {
                     { cancelable: false }
                 );
             }
+            else if (regonizeComment(gestureState)) {
+                props.showModal();
+            }
             return true;
         }
     });
